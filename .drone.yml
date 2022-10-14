@@ -3,15 +3,30 @@ type: docker
 name: default
 
 steps:
-- name: backend
+- name: test
   image: hello-world
   commands:
+    - echo "My name is Anoop."
   when:
     branch:
     - master
+    - feature/**
     event:
     - push
     - pull_request
+    
+- name: test
+  image: hello-world
+  commands:
+    - echo "My name is Anoop."
+  when:
+    branch:
+    - master
+    - feature/**
+    event:
+    - push
+    - pull_request
+    
 - name: slack
   image: plugins/slack
   settings:
